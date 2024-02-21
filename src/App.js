@@ -37,14 +37,17 @@ function App() {
       <Droppable  droppableId="boxes">
         {(provided) => (
           <ul ref={provided.innerRef} {...provided.droppableProps}>
-            {box.map(({ id, bg }, index) =>
-              <Draggable key={id} draggableId={id.toString()} index={index}>
+            {box.map(({ id, bg }, index) => {
+              return (
+                <Draggable key={id} draggableId={id.toString()} index={index}>
                 {(provided) => (
                   <li ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
                     <div style={{ backgroundColor: bg }} className='box'></div>
                   </li>
                 )}
               </Draggable>
+              )
+            }
             )}
             {provided.placeholder}
           </ul>
